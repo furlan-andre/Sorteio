@@ -19,4 +19,12 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Sorteio.Domain\Sorteio.Domain.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Familias\" />
+    </ItemGroup>
+
 </Project>
