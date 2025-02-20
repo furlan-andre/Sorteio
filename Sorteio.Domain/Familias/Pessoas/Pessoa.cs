@@ -1,6 +1,6 @@
 ﻿using Sorteio.Domain.Recursos;
 
-namespace Sorteio.Domain.Familia.Pessoa;
+namespace Sorteio.Domain.Familia.Pessoas;
 
 public class Pessoa
 {
@@ -10,7 +10,9 @@ public class Pessoa
     
     public Pessoa(string nome, string cpf, DateTime dataNascimento)
     {
+        cpf = cpf.SomenteNumeros();
         ValidarDadosObrigatorios(nome, cpf, dataNascimento);
+        
         Nome = nome;
         Cpf = cpf;
         DataNascimento = dataNascimento;
@@ -32,17 +34,26 @@ public class Pessoa
     private void ValidarDadosObrigatorios(string nome, string cpf, DateTime dataNascimento)
     {
         ValidarCpf(cpf);
-        
-        if (string.IsNullOrWhiteSpace(nome))
-            throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "nome"));
-        
-        if (dataNascimento.Date == new DateTime().Date)
-            throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "data de nascimento"));
+        ValidarNome(nome);
+        ValidarDataNascimento(dataNascimento);
     }
 
     private void ValidarCpf(string cpf)
     {
-        if (!ValidadorDocumento.ValidarCpf(cpf))
+        if (string.IsNullOrWhiteSpace(cpf) || !ValidadorDocumento.ValidarCpf(cpf))
             throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.CampoInvalido, "CPF"));
     }
+    
+    private void ValidarNome(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+            throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "nome"));
+    }
+
+    private void ValidarDataNascimento(DateTime dataNascimento)
+    {
+        if (dataNascimento.Date == new DateTime().Date)
+            throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "data de nascimento"));
+    }
+
 }

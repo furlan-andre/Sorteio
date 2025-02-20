@@ -5,13 +5,7 @@ namespace Sorteio.Domain.Recursos;
 public class ValidadorDocumento
 {
     public static bool ValidarCpf(string cpf)
-    {
-        if (string.IsNullOrWhiteSpace(cpf))
-            return false;
-
-        cpf = Regex.Replace(cpf, @"\D", "");
-
-        if (cpf.Length != 11)
+    {   if (cpf.Length != 11)
             return false;
         
         if (cpf.Distinct().Count() == 1)
