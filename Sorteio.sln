@@ -10,8 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Infra", "Sorteio.In
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Api", "Sorteio.Api\Sorteio.Api.csproj", "{6BE406B7-09D3-4178-86E8-F56C3597B2B4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Aplicacao", "Sorteio.Aplicacao\Sorteio.Aplicacao.csproj", "{64C53DD4-94AD-4C8D-BC9E-BF5D1094C362}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,9 +36,5 @@ Global
 		{6BE406B7-09D3-4178-86E8-F56C3597B2B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6BE406B7-09D3-4178-86E8-F56C3597B2B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6BE406B7-09D3-4178-86E8-F56C3597B2B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{64C53DD4-94AD-4C8D-BC9E-BF5D1094C362}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{64C53DD4-94AD-4C8D-BC9E-BF5D1094C362}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{64C53DD4-94AD-4C8D-BC9E-BF5D1094C362}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{64C53DD4-94AD-4C8D-BC9E-BF5D1094C362}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
