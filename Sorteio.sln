@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Testes", "Sorteio.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Domain", "Sorteio.Domain\Sorteio.Domain.csproj", "{3B7F1D1F-5040-4737-B2A2-9E15A0AF76EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Servico", "Sorteio.Servico\Sorteio.Servico.csproj", "{3B165BE3-7902-4F64-8BD7-A4A86C06157F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Aplicacao", "Sorteio.Aplicacao\Sorteio.Aplicacao.csproj", "{3B165BE3-7902-4F64-8BD7-A4A86C06157F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorteio.Infra", "Sorteio.Infra\Sorteio.Infra.csproj", "{5F075936-DEC9-4168-AA0A-C4A3E26A86DF}"
 EndProject
