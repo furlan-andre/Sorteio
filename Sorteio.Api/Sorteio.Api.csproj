@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>    
-    <ProjectReference Include="..\Sorteio.Aplicacao\Sorteio.Aplicacao.csproj" />
     <ProjectReference Include="..\Sorteio.Infra\Sorteio.Infra.csproj" />
   </ItemGroup>
 
