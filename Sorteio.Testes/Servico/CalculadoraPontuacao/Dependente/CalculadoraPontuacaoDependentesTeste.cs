@@ -39,7 +39,7 @@ public class CalculadoraPontuacaoDependentesTeste
 
         while (quantidadeDepenedentes > 0)
         {
-            familia.ComDependenteMenoridade(_cpfDependenteValido[quantidadeDepenedentes--]);
+            familia.ComDependenteMenoridade(_cpfDependenteValido[--quantidadeDepenedentes]);
         }
         
         return familia.Montar();
