@@ -62,7 +62,7 @@ public class FamiliaTeste
     }
     
     [Fact]
-    public void NaoDeveAdicionarDependenteComCpfJaCadastrado()
+    public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaResponsavel()
     {
         var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
         var dependente = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMenoridade().Criar();
@@ -70,6 +70,19 @@ public class FamiliaTeste
         var familia = new Familia(responsavel);
         
         var excecao = Assert.Throws<ArgumentException>(() => familia.AdicionarDependente(dependente));
+        Assert.Equal(Mensagens.OCpfInformadoJaEstaCadastrado, excecao.Message);
+    }
+    
+    [Fact]
+    public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaOutroDependente()
+    {
+        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
+        var dependente1 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
+        var dependente2 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
+        
+        var familia = new Familia(responsavel);
+        
+        var excecao = Assert.Throws<ArgumentException>(() => familia.AdicionarDependentes([dependente1, dependente2]));
         Assert.Equal(Mensagens.OCpfInformadoJaEstaCadastrado, excecao.Message);
     }
 }
