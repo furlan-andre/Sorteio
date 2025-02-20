@@ -22,6 +22,11 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Sorteio.Domain\Sorteio.Domain.csproj" />
+      <ProjectReference Include="..\Sorteio.Servico\Sorteio.Servico.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Dominio\" />
     </ItemGroup>
 
 </Project>
