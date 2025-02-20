@@ -1,6 +1,6 @@
 using Sorteio.Domain.Familias;
 
-namespace Sorteio.Servico.CalculadoraPontuacao;
+namespace Sorteio.Servico.CalculadoraPontuacao.Dependentes;
 
 public class CalculadoraPontuacaoDependentes : ICalculadoraPontuacao
 {

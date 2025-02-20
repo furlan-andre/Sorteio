@@ -1,7 +1,8 @@
 using Sorteio.Domain.Familias;
 using Sorteio.Familias;
+using Sorteio.Servico.CalculadoraPontuacao.Dependentes;
 
-namespace Sorteio.Servico.CalculadoraPontuacao;
+namespace Sorteio.Servico.CalculadoraPontuacao.Dependente;
 
 public class CalculadoraPontuacaoDependentesTeste
 {
@@ -31,8 +32,8 @@ public class CalculadoraPontuacaoDependentesTeste
         var pontuacao = _calculadoraPontuacaoDependentes.Calcular(familia);
         Assert.Equal(resultadoEsperado, pontuacao);
     }
-
-    private Familia ObterFamilia(int quantidadeDepenedentes)
+    
+    protected Familia ObterFamilia(int quantidadeDepenedentes)
     {
         var familia = new FamiliaBuilder().Novo().ComResponsavel(_cpfValido);
 

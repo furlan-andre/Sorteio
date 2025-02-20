@@ -18,6 +18,17 @@ public class FamiliaTeste
     }
     
     [Fact]
+    public void DeveCriarFamiliaComRendaFamiliar()
+    {
+        float rendaFamiliar = 1500;
+        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
+        
+        var familia = new Familia(responsavel,1500);
+        
+        Assert.Equal(rendaFamiliar, familia.ObterRendaFamiliar());
+    }
+    
+    [Fact]
     public void DeveCriarFamiliaSemDependentes()
     {
         var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();

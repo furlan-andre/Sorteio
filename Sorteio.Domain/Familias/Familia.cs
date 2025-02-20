@@ -7,10 +7,12 @@ public class Familia
 {
     private Pessoa Responsavel { get; set; }
     private List<Pessoa> Dependentes { get; set; } = new List<Pessoa>();
+    private float RendaFamiliar { get; set; } = 0;
 
-    public Familia(Pessoa responsavel)
+    public Familia(Pessoa responsavel, float rendaFamiliar = 0)
     {
         Responsavel = responsavel;
+        RendaFamiliar = rendaFamiliar;
     }
 
     public void AdicionarDependentes(List<Pessoa> dependentes)
@@ -39,5 +41,10 @@ public class Familia
     public IEnumerable<Pessoa> ObterDependentes()
     {
         return Dependentes.Count == 0 ? [] : Dependentes;
+    }
+
+    public float ObterRendaFamiliar()
+    {
+        return RendaFamiliar;
     }
 }

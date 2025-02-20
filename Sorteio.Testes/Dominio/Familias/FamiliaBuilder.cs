@@ -9,6 +9,7 @@ public class FamiliaBuilder
 {
     private Pessoa _responsavel;
     private List<Pessoa> _dependentes = new List<Pessoa>();
+    private float _rendaFamiliar;
 
     public FamiliaBuilder Novo()
     {
@@ -29,9 +30,15 @@ public class FamiliaBuilder
         return this;
     }
 
+    public FamiliaBuilder ComRendaFamiliar(float rendaFamiliar)
+    {
+        _rendaFamiliar = rendaFamiliar;
+        return this;
+    }
+    
     public Familia Montar()
     {
-        var familia = new Familia(_responsavel);
+        var familia = new Familia(_responsavel, _rendaFamiliar);
         familia.AdicionarDependentes(_dependentes);
         return familia;
     }
