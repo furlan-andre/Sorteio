@@ -1,8 +1,9 @@
 using Sorteio.Domain.Familias;
+using Sorteio.Servico.CalculadoraPontuacao;
 
-namespace Sorteio.Servico.CalculadoraPontuacao.RendaFamiliar;
+namespace Sorteio.Servico.CalculadoraCriterio.RendaFamiliar;
 
-public class CalculadoraPontuacaoRendaFamiliar : ICalculadoraPontuacao
+public class CalculadoraCriterioRendaFamiliar : ICalculadoraCriterio
 {
     public int Calcular(Familia familia)
     {

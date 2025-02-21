@@ -1,16 +1,17 @@
 using Sorteio.Familias;
+using Sorteio.Servico.CalculadoraCriterio.RendaFamiliar;
 
 namespace Sorteio.Servico.CalculadoraPontuacao.RendaFamiliar;
 
 public class CalculadoraPontuacaoRendaFamiliarTeste
 {
-    private readonly CalculadoraPontuacaoRendaFamiliar _calculadoraPontuacaoRendaFamiliar;
+    private readonly CalculadoraCriterioRendaFamiliar _calculadoraCriterioRendaFamiliar;
     private readonly string _cpfValido;
     
     public CalculadoraPontuacaoRendaFamiliarTeste()
     {
         _cpfValido = "798.630.670-08";
-        _calculadoraPontuacaoRendaFamiliar = new CalculadoraPontuacaoRendaFamiliar();
+        _calculadoraCriterioRendaFamiliar = new CalculadoraCriterioRendaFamiliar();
     }
     
     [Theory]
@@ -26,7 +27,7 @@ public class CalculadoraPontuacaoRendaFamiliarTeste
     public void CalculaPontuacaoDependentes(int resultadoEsperado, float rendaFamiliar)
     {
         var familia = new FamiliaBuilder().Novo().ComResponsavel(_cpfValido).ComRendaFamiliar(rendaFamiliar).Montar();
-        var pontuacao = _calculadoraPontuacaoRendaFamiliar.Calcular(familia);
+        var pontuacao = _calculadoraCriterioRendaFamiliar.Calcular(familia);
         Assert.Equal(resultadoEsperado, pontuacao);
     }
 }

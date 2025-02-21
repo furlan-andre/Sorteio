@@ -2,7 +2,7 @@ using Sorteio.Domain.Familias;
 
 namespace Sorteio.Servico.CalculadoraPontuacao;
 
-public interface ICalculadoraPontuacao
+public interface ICalculadoraCriterio
 {
     int Calcular(Familia familia);
 }
