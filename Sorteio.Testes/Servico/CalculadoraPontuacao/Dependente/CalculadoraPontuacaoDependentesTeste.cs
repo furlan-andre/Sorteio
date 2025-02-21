@@ -1,12 +1,12 @@
 using Sorteio.Domain.Familias;
 using Sorteio.Familias;
-using Sorteio.Servico.CalculadoraPontuacao.Dependentes;
+using Sorteio.Servico.CalculadoraCriterio.Dependentes;
 
 namespace Sorteio.Servico.CalculadoraPontuacao.Dependente;
 
 public class CalculadoraPontuacaoDependentesTeste
 {
-    private readonly CalculadoraPontuacaoDependentes _calculadoraPontuacaoDependentes;
+    private readonly CalculadoraCriterioDependentes _calculadoraCriterioDependentes;
     private readonly string _cpfValido;
     private readonly string[] _cpfDependenteValido = new string[4];
     
@@ -17,7 +17,7 @@ public class CalculadoraPontuacaoDependentesTeste
         _cpfDependenteValido[1] = "792.972.730-09";
         _cpfDependenteValido[2] = "571.986.750-34";
         _cpfDependenteValido[3] = "914.507.010-51";
-        _calculadoraPontuacaoDependentes = new CalculadoraPontuacaoDependentes();
+        _calculadoraCriterioDependentes = new CalculadoraCriterioDependentes();
     }
     
     [Theory]
@@ -29,7 +29,7 @@ public class CalculadoraPontuacaoDependentesTeste
     public void CalculaPontuacaoDependentes(int resultadoEsperado, int quantidadeDepenentes)
     {
         var familia = ObterFamilia(quantidadeDepenentes);
-        var pontuacao = _calculadoraPontuacaoDependentes.Calcular(familia);
+        var pontuacao = _calculadoraCriterioDependentes.Calcular(familia);
         Assert.Equal(resultadoEsperado, pontuacao);
     }
     
