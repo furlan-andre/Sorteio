@@ -1,5 +1,5 @@
+using Sorteio.Aplicacao.CalculadoraCriterio.Dependentes;
 using Sorteio.Dominio.Familias;
-using Sorteio.Servico.CalculadoraCriterio.Dependentes;
 
 namespace Sorteio.Aplicacao.CalculadoraPontuacao.Dependente;
 

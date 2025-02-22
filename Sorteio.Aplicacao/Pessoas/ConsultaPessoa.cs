@@ -1,7 +1,7 @@
+using Sorteio.Aplicacao.Pessoas.Dtos;
 using Sorteio.Dominio.Familias.Pessoas;
-using Sorteio.Servico.Pessoas.Dtos;
 
-namespace Sorteio.Servico.Pessoas;
+namespace Sorteio.Aplicacao.Pessoas;
 
 public class ConsultaPessoa : IConsultaPessoa
 {

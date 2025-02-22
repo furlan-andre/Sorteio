@@ -1,9 +1,9 @@
+using Sorteio.Aplicacao.CalculadoraCriterio;
+using Sorteio.Aplicacao.CalculadoraCriterio.Dependentes;
 using Sorteio.Dominio.Familias;
-using Sorteio.Servico.CalculadoraCriterio.Dependentes;
 using Sorteio.Servico.CalculadoraCriterio.RendaFamiliar;
-using Sorteio.Servico.CalculadoraPontuacao;
 
-namespace Sorteio.Servico.CalculadoraPontuacaoFamiliares;
+namespace Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares;
 
 public class CalculadoraPontuacaoFamiliar : ICalculadoraPontuacaoFamiliar
 {

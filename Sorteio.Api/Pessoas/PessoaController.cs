@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
+using Sorteio.Aplicacao.Pessoas;
+using Sorteio.Aplicacao.Pessoas.Dtos;
 using Sorteio.Dominio.Familia.Pessoas;
 using Sorteio.Dominio.Familias.Pessoas;
 using Sorteio.Infra.Pessoas;
-using Sorteio.Servico.Pessoas;
-using Sorteio.Servico.Pessoas.Dtos;
 
 namespace Sorteio.Api.Pessoas;
 

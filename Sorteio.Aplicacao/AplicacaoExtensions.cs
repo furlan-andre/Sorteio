@@ -1,5 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
-using Sorteio.Servico.Pessoas;
+using Sorteio.Aplicacao.Pessoas;
 
 namespace Sorteio.Aplicacao;
 

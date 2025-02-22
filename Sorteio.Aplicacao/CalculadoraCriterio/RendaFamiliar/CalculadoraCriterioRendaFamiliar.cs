@@ -1,5 +1,5 @@
+using Sorteio.Aplicacao.CalculadoraCriterio;
 using Sorteio.Dominio.Familias;
-using Sorteio.Servico.CalculadoraPontuacao;
 
 namespace Sorteio.Servico.CalculadoraCriterio.RendaFamiliar;
 
