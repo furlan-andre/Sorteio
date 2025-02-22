@@ -1,7 +1,7 @@
-using Sorteio.Domain.Familia.Pessoas;
-using Sorteio.Domain.Recursos;
+using Sorteio.Dominio.Familia.Pessoas;
+using Sorteio.Dominio.Recursos;
 
-namespace Sorteio.Domain.Familias;
+namespace Sorteio.Dominio.Familias;
 
 public class Familia
 {

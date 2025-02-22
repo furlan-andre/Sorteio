@@ -8,7 +8,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sorteio.Domain\Sorteio.Domain.csproj" />
+      <ProjectReference Include="..\Sorteio.Dominio\Sorteio.Dominio.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.2" />
     </ItemGroup>
 
 </Project>

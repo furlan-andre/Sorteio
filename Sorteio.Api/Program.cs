@@ -1,20 +1,23 @@
+using Sorteio.Aplicacao;
+using Sorteio.Infra;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona serviços ao contêiner de injeção de dependência
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.AdicionarInfra(builder.Configuration);
+builder.Services.AdicionarAplicacao();
 
 var app = builder.Build();
 
-// Configuração do pipeline de requisição HTTP
 if (app.Environment.IsDevelopment())
 {
-    // app.UseSwagger();
-    // app.UseSwaggerUI();
+    app.UseSwagger();
+    app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
-
 app.Run();

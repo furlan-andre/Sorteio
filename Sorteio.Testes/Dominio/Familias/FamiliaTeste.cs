@@ -1,8 +1,7 @@
-using Sorteio.Domain.Familias;
-using Sorteio.Domain.Recursos;
-using Sorteio.Familias.Pessoas;
+using Sorteio.Dominio.Familias.Pessoas;
+using Sorteio.Dominio.Recursos;
 
-namespace Sorteio.Familias;
+namespace Sorteio.Dominio.Familias;
 
 public class FamiliaTeste
 {   
