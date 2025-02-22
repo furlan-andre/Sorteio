@@ -1,4 +1,4 @@
-using Sorteio.Aplicacao.CalculadoraCriterio.Dependentes;
+using Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares.CalculadoraCriterio.Dependentes;
 using Sorteio.Dominio.Familias;
 
 namespace Sorteio.Aplicacao.CalculadoraPontuacao.Dependente;

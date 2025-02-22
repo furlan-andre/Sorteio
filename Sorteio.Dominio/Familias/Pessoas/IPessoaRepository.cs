@@ -6,4 +6,5 @@ public interface IPessoaRepository
 {
     Task<IEnumerable<Pessoa>> ObterTodosAsync();
     Task<Pessoa> ObterPorIdAsync(int id);
+    Task AdicionarAsync(Pessoa pessoa);
 }

@@ -41,28 +41,32 @@ public class PessoaTeste
     [InlineData(" ")]
     public void NaoDeveCriarPessoaComNomeInvalido(string nomeInvalido)
     {
+        var mensagemExperada = Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "nome");
         var excecao = Assert.Throws<ArgumentException>(
             () => new Pessoa(nomeInvalido, _cpfValido, _dataNascimentoValida));
         
-        Assert.Equal(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "nome"), excecao.Message);
+        Assert.Equal(mensagemExperada, excecao.Message);
     }
 
     [Theory]
     [InlineData("")]
     [InlineData(" ")]
     [InlineData("123")]
+    [InlineData("798.630.670-01")]
     public void NaoDeveCriarPessoaComCpfInvalido(string cpfInvalido)
     {   
+        var mensagemEsperada = Mensagens.FormatarMensagem(Mensagens.CampoInvalido, "CPF");
         var excecao = Assert.Throws<ArgumentException>(() => new Pessoa(_nomeValido, cpfInvalido, _dataNascimentoValida));
-        Assert.Equal(Mensagens.FormatarMensagem(Mensagens.CampoInvalido, "CPF"), excecao.Message);
+        Assert.Equal(mensagemEsperada, excecao.Message);
     }
 
     [Fact]
     public void NaoDeveCriarPessoaComDataNascimentoInvalida()
     {
+        var mensagemEsperada = Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "data de nascimento");
         var dataNascimentoInvalida = new DateTime();
 
         var excecao = Assert.Throws<ArgumentException>(() => new Pessoa(_nomeValido, _cpfValido, dataNascimentoInvalida));
-        Assert.Equal(Mensagens.FormatarMensagem(Mensagens.CampoObrigatorio, "data de nascimento"), excecao.Message);
+        Assert.Equal(mensagemEsperada, excecao.Message);
     }
 }

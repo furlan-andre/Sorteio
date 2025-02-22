@@ -22,4 +22,10 @@ public class PessoaRepository : IPessoaRepository
     {
         return await _context.Pessoas.Where(p => p.Id == id).FirstOrDefaultAsync();
     }
+
+    public async Task AdicionarAsync(Pessoa pessoa)
+    {
+        _context.Pessoas.Add(pessoa);
+        await _context.SaveChangesAsync();
+    }
 }

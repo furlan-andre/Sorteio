@@ -1,6 +1,6 @@
 using Sorteio.Dominio.Familias;
 
-namespace Sorteio.Aplicacao.CalculadoraCriterio;
+namespace Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares.CalculadoraCriterio;
 
 public interface ICalculadoraCriterio
 {
