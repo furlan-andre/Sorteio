@@ -1,7 +1,7 @@
-using Sorteio.Aplicacao.CalculadoraCriterio;
-using Sorteio.Aplicacao.CalculadoraCriterio.Dependentes;
+using Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares.CalculadoraCriterio;
+using Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares.CalculadoraCriterio.Dependentes;
+using Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares.CalculadoraCriterio.RendaFamiliar;
 using Sorteio.Dominio.Familias;
-using Sorteio.Servico.CalculadoraCriterio.RendaFamiliar;
 
 namespace Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares;
 

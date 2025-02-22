@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Sorteio.Aplicacao.Pessoas;
+using Sorteio.Aplicacao.Pessoas.Armazenadores;
 using Sorteio.Aplicacao.Pessoas.Dtos;
 using Sorteio.Dominio.Familia.Pessoas;
 using Sorteio.Dominio.Familias.Pessoas;
@@ -12,10 +13,12 @@ namespace Sorteio.Api.Pessoas;
 public class PessoaController : ControllerBase
 {
     private readonly IConsultaPessoa _consultaPessoa;
-
-    public PessoaController(IConsultaPessoa consultaPessoa)
+    private readonly IArmazenadorPessoa _armazenadorPessoa;
+    
+    public PessoaController(IConsultaPessoa consultaPessoa, IArmazenadorPessoa armazenadorPessoa)
     {
         _consultaPessoa = consultaPessoa;
+        _armazenadorPessoa = armazenadorPessoa;
     }
 
     [HttpGet]
@@ -33,5 +36,12 @@ public class PessoaController : ControllerBase
         if (pessoas == null) return NotFound();
         
         return Ok(pessoas);
+    }
+    
+    [HttpPost()]
+    public async Task<ActionResult<IEnumerable<PessoaDto>>> ObterPorId(PessoaDto pessoaDto)
+    {
+        await _armazenadorPessoa.ArmazenarAsync(pessoaDto);
+        return Ok();
     }
 }
