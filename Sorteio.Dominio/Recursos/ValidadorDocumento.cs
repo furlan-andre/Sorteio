@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace Sorteio.Domain.Recursos;
+namespace Sorteio.Dominio.Recursos;
 
 public class ValidadorDocumento
 {

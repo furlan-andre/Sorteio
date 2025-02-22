@@ -1,4 +1,4 @@
-using Sorteio.Domain.Familias;
+using Sorteio.Dominio.Familias;
 
 namespace Sorteio.Servico.CalculadoraPontuacao;
 

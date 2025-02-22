@@ -1,4 +1,4 @@
-namespace Sorteio.Domain.Recursos;
+namespace Sorteio.Dominio.Recursos;
 
 public static class AuxiliadorDatas
 {

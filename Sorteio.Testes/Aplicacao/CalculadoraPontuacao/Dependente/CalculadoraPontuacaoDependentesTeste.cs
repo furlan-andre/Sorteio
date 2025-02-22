@@ -1,8 +1,7 @@
-using Sorteio.Domain.Familias;
-using Sorteio.Familias;
+using Sorteio.Dominio.Familias;
 using Sorteio.Servico.CalculadoraCriterio.Dependentes;
 
-namespace Sorteio.Servico.CalculadoraPontuacao.Dependente;
+namespace Sorteio.Aplicacao.CalculadoraPontuacao.Dependente;
 
 public class CalculadoraPontuacaoDependentesTeste
 {

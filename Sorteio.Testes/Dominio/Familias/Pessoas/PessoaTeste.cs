@@ -1,8 +1,8 @@
 ﻿using Bogus;
-using Sorteio.Domain.Familia.Pessoas;
-using Sorteio.Domain.Recursos;
+using Sorteio.Dominio.Familia.Pessoas;
+using Sorteio.Dominio.Recursos;
 
-namespace Sorteio.Familias.Pessoas;
+namespace Sorteio.Dominio.Familias.Pessoas;
 
 public class PessoaTeste
 {

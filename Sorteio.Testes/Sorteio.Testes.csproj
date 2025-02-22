@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Sorteio.Domain\Sorteio.Domain.csproj" />
+      <ProjectReference Include="..\Sorteio.Dominio\Sorteio.Dominio.csproj" />
       <ProjectReference Include="..\Sorteio.Aplicacao\Sorteio.Aplicacao.csproj" />
     </ItemGroup>
 

@@ -1,9 +1,8 @@
 using Bogus;
-using Sorteio.Domain.Familia.Pessoas;
-using Sorteio.Domain.Familias;
-using Sorteio.Familias.Pessoas;
+using Sorteio.Dominio.Familia.Pessoas;
+using Sorteio.Dominio.Familias.Pessoas;
 
-namespace Sorteio.Familias;
+namespace Sorteio.Dominio.Familias;
 
 public class FamiliaBuilder
 {
