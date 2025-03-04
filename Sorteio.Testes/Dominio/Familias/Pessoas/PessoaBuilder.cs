@@ -1,5 +1,4 @@
 using Bogus;
-using Sorteio.Dominio.Familia.Pessoas;
 using Sorteio.Dominio.Recursos;
 
 namespace Sorteio.Dominio.Familias.Pessoas;
@@ -8,6 +7,8 @@ public class PessoaBuilder
 {
     private string _nome;
     private string _cpf;
+    private int _id;
+    private float _renda = 0;
     private DateTime _dataNascimento;
     private Faker _faker;
 
@@ -41,9 +42,15 @@ public class PessoaBuilder
         _dataNascimento = AuxiliadorDatas.ObterDataNascimento(0, 17);
         return this;
     }
+
+    public PessoaBuilder ComRenda(float renda)
+    {
+        _renda = renda;
+        return this;
+    }
     
     public Pessoa Criar()
     {
-        return new Pessoa(_nome, _cpf, _dataNascimento);
+        return new Pessoa(_nome, _cpf, _dataNascimento, _renda);
     }
 }

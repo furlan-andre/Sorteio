@@ -1,20 +1,35 @@
-using Sorteio.Dominio.Familia.Pessoas;
+using Sorteio.Dominio.Familias.Pessoas;
 using Sorteio.Dominio.Recursos;
 
 namespace Sorteio.Dominio.Familias;
 
 public class Familia
 {
-    private Pessoa Responsavel { get; set; }
-    private List<Pessoa> Dependentes { get; set; } = new List<Pessoa>();
-    private float RendaFamiliar { get; set; } = 0;
-
-    public Familia(Pessoa responsavel, float rendaFamiliar = 0)
+    public int Id { get; private set; }
+    public int ResponsavelId { get; private set; }
+    public virtual Pessoa Responsavel { get; private set; }
+    public int? ConjugeId { get; private set; }
+    public virtual Pessoa Conjuge { get; private set; }
+    public virtual List<Pessoa> Dependentes { get; private set; } = new List<Pessoa>(); 
+    
+    protected Familia() { }
+    public Familia(Pessoa responsavel)
     {
         Responsavel = responsavel;
-        RendaFamiliar = rendaFamiliar;
     }
-
+    
+    public Familia(Pessoa responsavel, List<Pessoa> dependentes)
+    {
+        Responsavel = responsavel;
+        AdicionarDependentes(dependentes);
+    }
+    
+    public void AdicionarConjuge(Pessoa conjuge)
+    {
+        ValidarCpfJaCadastrado(conjuge.Cpf);
+        Conjuge = conjuge;
+    }
+    
     public void AdicionarDependentes(List<Pessoa> dependentes)
     {
         dependentes.ForEach(dependente => AdicionarDependente(dependente));
@@ -22,29 +37,40 @@ public class Familia
 
     public void AdicionarDependente(Pessoa dependente)
     {
-        ValidarCpfJaCadastrado(dependente);
-        
+        ValidarCpfJaCadastrado(dependente.Cpf);
         Dependentes.Add(dependente);
     }
 
-    private void ValidarCpfJaCadastrado(Pessoa dependente)
+    private void ValidarCpfJaCadastrado(string cpf)
     {
-        if (Responsavel.Cpf == dependente.Cpf || Dependentes.Any(pessoa => pessoa.Cpf == dependente.Cpf))
+        if(!ValidarCpfDuplicidadeResponsavel(cpf) || 
+           !ValidarCpfDuplicidadeConjuge(cpf) || 
+           !ValidarCpfDuplicidadeDependentes(cpf))
             throw new ArgumentException(Mensagens.OCpfInformadoJaEstaCadastrado);
     }
 
-    public Pessoa ObterResponsavel()
+    private bool ValidarCpfDuplicidadeResponsavel(string cpf)
     {
-        return Responsavel;
-    }
-    
-    public IEnumerable<Pessoa> ObterDependentes()
-    {
-        return Dependentes.Count == 0 ? [] : Dependentes;
+        return Responsavel.Cpf != cpf;
     }
 
+    private bool ValidarCpfDuplicidadeConjuge(string cpf)
+    {
+        return Conjuge == null || Conjuge.Cpf != cpf;
+    }
+    
+    private bool ValidarCpfDuplicidadeDependentes(string cpf)
+    {
+        return Dependentes.Count == 0 || Dependentes.All(dependente => dependente.Cpf != cpf);
+    }
+    
+    public int ObterQuantidadeDependentesComMenoridade()
+    {
+        return Dependentes.Count(dependente => dependente.ObterIdade() < 18);
+    }
+    
     public float ObterRendaFamiliar()
     {
-        return RendaFamiliar;
+        return Responsavel.Renda + (Conjuge != null ? Conjuge.Renda : 0);
     }
 }
