@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Sorteio.Dominio.Familia.Pessoas;
+using Sorteio.Dominio.Familias.Pessoas;
 
 namespace Sorteio.Infra.Mapeadores;
 
@@ -18,5 +18,7 @@ public class PessoaConfiguration : IEntityTypeConfiguration<Pessoa>
         builder.Property(p => p.DataNascimento)
             .HasColumnType("DateTime")
             .IsRequired();
+        builder.Property(p => p.Renda)
+            .HasColumnType("decimal(18,2)");
     }
 }

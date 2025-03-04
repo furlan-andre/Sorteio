@@ -6,10 +6,8 @@ public class CalculadoraCriterioDependentes : ICalculadoraCriterio
 {
     public int Calcular(Familia familia)
     {
-        var dependentes = familia.ObterDependentes().ToList();
-        var dependentesComMenoridade = dependentes.Count(dependente => dependente.ObterIdade() < 18);
-
-        switch (dependentesComMenoridade)
+        var dependentesValidos = familia.ObterQuantidadeDependentesComMenoridade();
+        switch (dependentesValidos)
         {
             case >= 3:
                 return 3;

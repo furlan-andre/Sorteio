@@ -5,24 +5,37 @@ namespace Sorteio.Dominio.Familias;
 
 public class FamiliaTeste
 {   
-    private readonly string _cpfValido;
-    private readonly string _cpfDependenteValido1;
-    private readonly string _cpfDependenteValido2;
-    
-    public FamiliaTeste()
-    {   
-        _cpfValido = "798.630.670-08";
-        _cpfDependenteValido1 = "031.572.322-07";
-        _cpfDependenteValido2 = "792.972.730-09";
+    [Theory]
+    [InlineData(false)]
+    [InlineData(true)]
+    public void DeveCriarFamilia(bool possuiConjuge)
+    {
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
+        
+        var familia = new Familia(responsavel);
+        if(possuiConjuge)
+        {
+            var conjuge = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1));
+            familia.AdicionarConjuge(conjuge);
+        }
+        
+        Assert.Equal(responsavel.Nome, familia.Responsavel.Nome);
+        Assert.Equal(responsavel.Cpf, familia.Responsavel.Cpf);
+        Assert.Equal(responsavel.DataNascimento, familia.Responsavel.DataNascimento);
+        Assert.True(!possuiConjuge || !string.IsNullOrWhiteSpace(familia.Conjuge.Cpf));
     }
     
-    [Fact]
-    public void DeveCriarFamiliaComRendaFamiliar()
+    [Theory]
+    [InlineData(1000, 500)]
+    [InlineData(1000, 0)]
+    public void DeveCriarFamiliaComRendaFamiliar(float rendaResponsavel, float rendaConjuge)
     {
-        float rendaFamiliar = 1500;
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
+        var rendaFamiliar = rendaResponsavel + rendaConjuge;
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0), false, rendaResponsavel);
+        var conjuge= MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), false, rendaConjuge);
         
-        var familia = new Familia(responsavel,1500);
+        var familia = new Familia(responsavel);
+        familia.AdicionarConjuge(conjuge);
         
         Assert.Equal(rendaFamiliar, familia.ObterRendaFamiliar());
     }
@@ -30,52 +43,54 @@ public class FamiliaTeste
     [Fact]
     public void DeveCriarFamiliaSemDependentes()
     {
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
         
         var familia = new Familia(responsavel);
         
-        Assert.Equal(responsavel.Nome, familia.ObterResponsavel().Nome);
-        Assert.Equal(responsavel.Cpf, familia.ObterResponsavel().Cpf);
-        Assert.Equal(responsavel.DataNascimento, familia.ObterResponsavel().DataNascimento);
+        Assert.Equal(responsavel.Nome, familia.Responsavel.Nome);
+        Assert.Equal(responsavel.Cpf, familia.Responsavel.Cpf);
+        Assert.Equal(responsavel.DataNascimento, familia.Responsavel.DataNascimento);
     }
     
         
     [Fact]
     public void DeveCriarFamiliaComUmDependente()
     {
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
-        var dependente = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
+        var dependente = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1),true);
         
         var familia = new Familia(responsavel);
         familia.AdicionarDependente(dependente);
         
-        Assert.Equal(dependente.Nome, familia.ObterDependentes().FirstOrDefault().Nome);
-        Assert.Equal(dependente.Cpf, familia.ObterDependentes().FirstOrDefault().Cpf);
-        Assert.Equal(dependente.ObterIdade(), familia.ObterDependentes().FirstOrDefault().ObterIdade());
+        Assert.Equal(dependente.Nome, familia.Dependentes.FirstOrDefault().Nome);
+        Assert.Equal(dependente.Cpf, familia.Dependentes.FirstOrDefault().Cpf);
+        Assert.Equal(dependente.ObterIdade(), familia.Dependentes.FirstOrDefault().ObterIdade());
     }
     
     [Fact]
     public void DeveCriarFamiliaComMaisDeUmDependente()
     {
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
-        var dependente1 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
-        var dependente2 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido2).ComMenoridade().Criar();
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
+        var dependente1 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), true);
+        var dependente2 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(2), true);
         
         var familia = new Familia(responsavel);
         familia.AdicionarDependentes([dependente1, dependente2]);
         
-        Assert.Contains(familia.ObterDependentes(),
-            pessoa => pessoa.Cpf == dependente1.Cpf && pessoa.ObterIdade() == dependente1.ObterIdade());
+        Assert.Contains(familia.Dependentes, pessoa => 
+            pessoa.Cpf == dependente1.Cpf && 
+            pessoa.ObterIdade() == dependente1.ObterIdade());
         
-        Assert.Contains(familia.ObterDependentes(),
-            pessoa => pessoa.Cpf == dependente2.Cpf && pessoa.ObterIdade() == dependente2.ObterIdade());
+        Assert.Contains(familia.Dependentes, pessoa => 
+            pessoa.Cpf == dependente2.Cpf &&
+            pessoa.ObterIdade() == dependente2.ObterIdade());
     }
     
     [Fact]
     public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaResponsavel()
     {
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
-        var dependente = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMenoridade().Criar();
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
+        var dependente = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0), true);
         
         var familia = new Familia(responsavel);
         
@@ -86,13 +101,26 @@ public class FamiliaTeste
     [Fact]
     public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaOutroDependente()
     {
-        var responsavel = new PessoaBuilder().Novo().ComCpf(_cpfValido).ComMaioridade().Criar();
-        var dependente1 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
-        var dependente2 = new PessoaBuilder().Novo().ComCpf(_cpfDependenteValido1).ComMenoridade().Criar();
+        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
+        var dependente1 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), true);
+        var dependente2 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), true);
         
         var familia = new Familia(responsavel);
         
         var excecao = Assert.Throws<ArgumentException>(() => familia.AdicionarDependentes([dependente1, dependente2]));
         Assert.Equal(Mensagens.OCpfInformadoJaEstaCadastrado, excecao.Message);
+    }
+
+    private Pessoa MontarPessoa(string cpf, bool comMenoridade = false, float renda = 0)
+    {
+        var builder = new PessoaBuilder()
+            .Novo()
+            .ComRenda(renda)
+            .ComCpf(cpf);
+        
+         if(comMenoridade)                   
+            return builder.ComMenoridade().Criar();
+         
+         return builder.ComMaioridade().Criar();
     }
 }

@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
-using Sorteio.Aplicacao.Pessoas;
-using Sorteio.Aplicacao.Pessoas.Armazenadores;
-using Sorteio.Aplicacao.Pessoas.Dtos;
-using Sorteio.Dominio.Familia.Pessoas;
-using Sorteio.Dominio.Familias.Pessoas;
-using Sorteio.Infra.Pessoas;
+using Sorteio.Aplicacao.Familias.Pessoas.Armazenadores;
+using Sorteio.Aplicacao.Familias.Pessoas.Atualizadores;
+using Sorteio.Aplicacao.Familias.Pessoas.Consultas;
+using Sorteio.Aplicacao.Familias.Pessoas.Dtos;
 
 namespace Sorteio.Api.Pessoas;
 
@@ -14,11 +12,13 @@ public class PessoaController : ControllerBase
 {
     private readonly IConsultaPessoa _consultaPessoa;
     private readonly IArmazenadorPessoa _armazenadorPessoa;
+    private readonly IAtualizadorPessoa _atualizadorPessoa;
     
-    public PessoaController(IConsultaPessoa consultaPessoa, IArmazenadorPessoa armazenadorPessoa)
+    public PessoaController(IConsultaPessoa consultaPessoa, IArmazenadorPessoa armazenadorPessoa, IAtualizadorPessoa atualizadorPessoa)
     {
         _consultaPessoa = consultaPessoa;
         _armazenadorPessoa = armazenadorPessoa;
+        _atualizadorPessoa = atualizadorPessoa;
     }
 
     [HttpGet]
@@ -28,20 +28,26 @@ public class PessoaController : ControllerBase
         return Ok(pessoas);
     }
     
-    
-    [HttpGet("/{id}")]
+    [HttpGet("{id}")]
     public async Task<ActionResult<IEnumerable<PessoaDto>>> ObterPorId(int id)
     {
         var pessoas = await _consultaPessoa.ObterPorIdAsync(id);
-        if (pessoas == null) return NotFound();
-        
         return Ok(pessoas);
     }
     
-    [HttpPost()]
-    public async Task<ActionResult<IEnumerable<PessoaDto>>> ObterPorId(PessoaDto pessoaDto)
+    [HttpPost]
+    public async Task<ActionResult<IEnumerable<ArmazenaPessoaDto>>> CriarPessoa([FromBody] ArmazenaPessoaDto armazenaPessoaDto)
     {
-        await _armazenadorPessoa.ArmazenarAsync(pessoaDto);
+        await _armazenadorPessoa.ArmazenarAsync(armazenaPessoaDto);
+        return Created();
+    }
+        
+    [HttpPut("{id}")]
+    public async Task<ActionResult<IEnumerable<AtualizadorPessoaDto>>> AtualizarPessoa(
+        [FromBody] AtualizadorPessoaDto atualizadorPessoaDto,
+        int id)
+    {
+        await _atualizadorPessoa.AtualizarAsync(id, atualizadorPessoaDto);
         return Ok();
     }
 }

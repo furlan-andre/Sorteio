@@ -1,5 +1,4 @@
 using Bogus;
-using Sorteio.Dominio.Familia.Pessoas;
 using Sorteio.Dominio.Familias.Pessoas;
 
 namespace Sorteio.Dominio.Familias;
@@ -7,8 +6,9 @@ namespace Sorteio.Dominio.Familias;
 public class FamiliaBuilder
 {
     private Pessoa _responsavel;
+    private Pessoa _conjuge;
     private List<Pessoa> _dependentes = new List<Pessoa>();
-    private float _rendaFamiliar;
+    private float _renda;
 
     public FamiliaBuilder Novo()
     {
@@ -22,6 +22,12 @@ public class FamiliaBuilder
         return this;
     }
 
+    public FamiliaBuilder ComConjuge(string cpf)
+    {
+        _conjuge = new PessoaBuilder().Novo().ComCpf(cpf).ComMaioridade().Criar();
+        return this;
+    }
+    
     public FamiliaBuilder ComDependenteMenoridade(string cpf)
     {
         var dependente = new PessoaBuilder().Novo().ComCpf(cpf).ComMenoridade().Criar(); 
@@ -29,16 +35,19 @@ public class FamiliaBuilder
         return this;
     }
 
-    public FamiliaBuilder ComRendaFamiliar(float rendaFamiliar)
+    public FamiliaBuilder ComRenda(float renda)
     {
-        _rendaFamiliar = rendaFamiliar;
+        _renda = renda;
         return this;
     }
     
     public Familia Montar()
     {
-        var familia = new Familia(_responsavel, _rendaFamiliar);
+        _responsavel.AlterarRenda(_renda);
+        var familia = new Familia(_responsavel);
         familia.AdicionarDependentes(_dependentes);
+        if(_conjuge != null) familia.AdicionarConjuge(_conjuge);
+        
         return familia;
     }
 }

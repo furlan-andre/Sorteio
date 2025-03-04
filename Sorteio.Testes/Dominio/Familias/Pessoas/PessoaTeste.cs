@@ -1,5 +1,4 @@
 ﻿using Bogus;
-using Sorteio.Dominio.Familia.Pessoas;
 using Sorteio.Dominio.Recursos;
 
 namespace Sorteio.Dominio.Familias.Pessoas;
@@ -12,7 +11,7 @@ public class PessoaTeste
 
     public PessoaTeste()
     {
-        _cpfValido = "798.630.670-08";
+        _cpfValido = AuxiliadorCpf.ObterCpfValido(0); 
         _dataNascimentoValida = DateTime.Now.AddYears(-20);
         var faker = new Faker();
         _nomeValido = faker.Name.FullName();

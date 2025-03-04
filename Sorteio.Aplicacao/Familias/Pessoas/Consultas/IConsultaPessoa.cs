@@ -1,6 +1,6 @@
-using Sorteio.Aplicacao.Pessoas.Dtos;
+using Sorteio.Aplicacao.Familias.Pessoas.Dtos;
 
-namespace Sorteio.Aplicacao.Pessoas;
+namespace Sorteio.Aplicacao.Familias.Pessoas.Consultas;
 
 public interface IConsultaPessoa
 {
