@@ -22,7 +22,7 @@ public class AtualizadorPessoaTests
     public async Task DeveAtualizarPessoaComSucesso()
     {
         var pessoa = new PessoaBuilder().Novo().ComMaioridade().ComCpf(AuxiliadorCpf.ObterCpfValido(0)).Criar();
-        var atualizadorPessoaDto = new AtualizadorPessoaDto()
+        var atualizadorPessoaDto = new AtualizaPessoaDto()
         {
             Nome = "João Das Couves",
             Cpf = AuxiliadorCpf.ObterCpfValido(1),
@@ -50,7 +50,7 @@ public class AtualizadorPessoaTests
     public async Task DeveLancarExcecaoParaPessoaNaoEncontrada()
     {
         var mensagemEsperada = Mensagens.FormatarMensagem(Mensagens.NaoFoiEncontrada, "Pessoa");
-        var pessoaDto = new AtualizadorPessoaDto()
+        var pessoaDto = new AtualizaPessoaDto()
         {
             Nome = "Joao Das Couves"
         };
@@ -67,7 +67,7 @@ public class AtualizadorPessoaTests
     public async Task NaoDeveAtualizarCasoValoresInvalidosOuNaoPreenchidos()
     {
         var pessoa = new PessoaBuilder().Novo().ComMaioridade().ComCpf(AuxiliadorCpf.ObterCpfValido(0)).Criar();
-        var atualizadorPessoaDto = new AtualizadorPessoaDto() { };
+        var atualizadorPessoaDto = new AtualizaPessoaDto() { };
        
         _pessoaRepositoryMock.Setup(repo => repo.ObterPorIdAsync(It.IsAny<int>())).ReturnsAsync(pessoa);
     

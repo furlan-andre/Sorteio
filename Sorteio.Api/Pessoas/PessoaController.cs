@@ -43,11 +43,11 @@ public class PessoaController : ControllerBase
     }
         
     [HttpPut("{id}")]
-    public async Task<ActionResult<IEnumerable<AtualizadorPessoaDto>>> AtualizarPessoa(
-        [FromBody] AtualizadorPessoaDto atualizadorPessoaDto,
+    public async Task<ActionResult<IEnumerable<AtualizaPessoaDto>>> AtualizarPessoa(
+        [FromBody] AtualizaPessoaDto atualizaPessoaDto,
         int id)
     {
-        await _atualizadorPessoa.AtualizarAsync(id, atualizadorPessoaDto);
+        await _atualizadorPessoa.AtualizarAsync(id, atualizaPessoaDto);
         return Ok();
     }
 }

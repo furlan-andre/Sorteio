@@ -4,5 +4,5 @@ namespace Sorteio.Aplicacao.Familias.Pessoas.Atualizadores;
 
 public interface IAtualizadorPessoa
 {
-    Task AtualizarAsync(int id, AtualizadorPessoaDto atualizadorPessoaDto);
+    Task AtualizarAsync(int id, AtualizaPessoaDto atualizaPessoaDto);
 }

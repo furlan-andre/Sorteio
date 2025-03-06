@@ -13,10 +13,10 @@ public class AtualizadorPessoa : IAtualizadorPessoa
         _pessoaRepository = pessoaRepository;
     }
 
-    public async Task AtualizarAsync(int id, AtualizadorPessoaDto atualizadorPessoaDto)
+    public async Task AtualizarAsync(int id, AtualizaPessoaDto atualizaPessoaDto)
     {
         var pessoa = await ValidarEntradas(id);
-        await AtualizarDados(atualizadorPessoaDto, pessoa);
+        await AtualizarDados(atualizaPessoaDto, pessoa);
     }
 
     private async Task<Pessoa> ValidarEntradas(int id)
@@ -28,7 +28,7 @@ public class AtualizadorPessoa : IAtualizadorPessoa
         return pessoa;
     }
 
-    private async Task AtualizarDados(AtualizadorPessoaDto pessoaDto, Pessoa pessoa)
+    private async Task AtualizarDados(AtualizaPessoaDto pessoaDto, Pessoa pessoa)
     {
         if(!string.IsNullOrWhiteSpace(pessoaDto.Nome))
             pessoa.AlterarNome(pessoaDto.Nome);
