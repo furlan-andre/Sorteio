@@ -2,7 +2,7 @@ using Sorteio.Aplicacao.Familias.Pessoas.Dtos;
 
 namespace Sorteio.Aplicacao.Familias.Dtos;
 
-public class GerenciaFamiliaDto
+public class ArmazenaFamiliaDto
 {
     public ArmazenaPessoaDto Responsavel { get; set; }
     public ArmazenaPessoaDto? Conjuge { get; set; }

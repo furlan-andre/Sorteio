@@ -16,6 +16,7 @@ public static class AplicacaoExtensions
         services.AddScoped<IAtualizadorPessoa, AtualizadorPessoa>();
         services.AddScoped<IConsultaFamilia, ConsultaFamilia>();
         services.AddScoped<IArmazenadorFamilia, ArmazenadorFamilia>();
+        services.AddScoped<IArmazenadorDependente, ArmazenadorDependente>();
         
         return services;
     }

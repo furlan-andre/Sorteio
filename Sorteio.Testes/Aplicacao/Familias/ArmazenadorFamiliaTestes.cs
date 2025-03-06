@@ -36,7 +36,7 @@ public class ArmazenadorFamiliaTests
         var responsavelDto = PessoaMapper.ParaArmazenaPessoaDto(responsavelPessoa);
         var dependentePessoa = new PessoaBuilder().Novo().ComMenoridade().ComCpf(AuxiliadorCpf.ObterCpfValido(1)).Criar();
         var dependenteDto = PessoaMapper.ParaArmazenaPessoaDto(dependentePessoa);
-        var gerenciaFamiliaDto = new GerenciaFamiliaDto
+        var gerenciaFamiliaDto = new ArmazenaFamiliaDto
         {
             Responsavel = responsavelDto,
             Dependentes = [dependenteDto]
@@ -62,7 +62,7 @@ public class ArmazenadorFamiliaTests
         var responsavelDto = PessoaMapper.ParaArmazenaPessoaDto(responsavelPessoa);
         var conjugePessoa = new PessoaBuilder().Novo().ComMaioridade().ComCpf(AuxiliadorCpf.ObterCpfValido(1)).Criar();
         var conjugeDto = PessoaMapper.ParaArmazenaPessoaDto(conjugePessoa);
-        var gerenciaFamiliaDto = new GerenciaFamiliaDto
+        var gerenciaFamiliaDto = new ArmazenaFamiliaDto
         {
             Responsavel = responsavelDto,
             Conjuge = conjugeDto
@@ -87,7 +87,7 @@ public class ArmazenadorFamiliaTests
         var mensagemEsperada = "Teste de excecao";
         var responsavelPessoa = new PessoaBuilder().Novo().ComMaioridade().ComCpf(AuxiliadorCpf.ObterCpfValido(0)).Criar();
         var responsavelDto = PessoaMapper.ParaArmazenaPessoaDto(responsavelPessoa);
-        var gerenciaFamiliaDto = new GerenciaFamiliaDto
+        var gerenciaFamiliaDto = new ArmazenaFamiliaDto
         {
             Responsavel = responsavelDto
         };

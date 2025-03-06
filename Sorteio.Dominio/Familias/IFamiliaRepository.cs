@@ -8,4 +8,5 @@ public interface IFamiliaRepository
     Task<Familia> ObterPorIdAsync(int id);
     Task<IEnumerable<Pessoa>> ObterDependentesPorFamiliaIdAsync(int id);
     Task AdicionarAsync(Familia familia);
+    Task AtualizarAsync(Familia familia);
 }

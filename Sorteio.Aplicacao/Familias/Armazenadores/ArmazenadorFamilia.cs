@@ -21,16 +21,16 @@ public class ArmazenadorFamilia : IArmazenadorFamilia
         _unitOfWork = unitOfWork;
     }
 
-    public async Task<Familia> ArmazenarAsync(GerenciaFamiliaDto gerenciaFamiliaDto)
+    public async Task<Familia> ArmazenarAsync(ArmazenaFamiliaDto armazenaFamiliaDto)
     {
         await _unitOfWork.IniciarTransacaoAsync();
 
         try
         {
-            var responsavel = await _armazenadorPessoa.ArmazenarAsync(gerenciaFamiliaDto.Responsavel);
+            var responsavel = await _armazenadorPessoa.ArmazenarAsync(armazenaFamiliaDto.Responsavel);
             
             var dependentes = new List<Pessoa>();
-            var tasks = gerenciaFamiliaDto.Dependentes.Select(async pessoa =>
+            var tasks = armazenaFamiliaDto.Dependentes.Select(async pessoa =>
             {
                 var dependente = await _armazenadorPessoa.ArmazenarAsync(pessoa);
                 dependentes.Add(dependente);    
@@ -39,9 +39,9 @@ public class ArmazenadorFamilia : IArmazenadorFamilia
             await Task.WhenAll(tasks);
             var familia = new Familia(responsavel, dependentes);
 
-            if (gerenciaFamiliaDto.Conjuge != null)
+            if (armazenaFamiliaDto.Conjuge != null)
             {
-                var conjuge = await _armazenadorPessoa.ArmazenarAsync(gerenciaFamiliaDto.Conjuge);
+                var conjuge = await _armazenadorPessoa.ArmazenarAsync(armazenaFamiliaDto.Conjuge);
                 familia.AdicionarConjuge(conjuge);
             }
 

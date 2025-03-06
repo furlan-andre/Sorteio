@@ -5,5 +5,5 @@ namespace Sorteio.Aplicacao.Familias.Armazenadores;
 
 public interface IArmazenadorFamilia
 {
-    Task<Familia> ArmazenarAsync(GerenciaFamiliaDto gerenciaFamiliaDto);
+    Task<Familia> ArmazenarAsync(ArmazenaFamiliaDto armazenaFamiliaDto);
 }

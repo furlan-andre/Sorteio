@@ -42,4 +42,10 @@ public class FamiliaRepository : IFamiliaRepository
         _contexto.Familias.Add(familia);
         await _contexto.SaveChangesAsync();
     }
+    
+    public async Task AtualizarAsync(Familia familia)
+    {
+        _contexto.Familias.Update(familia);
+        await _contexto.SaveChangesAsync();
+    }
 }
