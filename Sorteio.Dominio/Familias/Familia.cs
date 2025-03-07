@@ -9,7 +9,7 @@ public class Familia
     public int ResponsavelId { get; private set; }
     public virtual Pessoa Responsavel { get; private set; }
     public int? ConjugeId { get; private set; }
-    public virtual Pessoa Conjuge { get; private set; }
+    public virtual Pessoa? Conjuge { get; private set; }
     public virtual List<Pessoa> Dependentes { get; private set; } = new List<Pessoa>(); 
     
     protected Familia() { }
@@ -26,27 +26,17 @@ public class Familia
     
     public void AdicionarConjuge(Pessoa conjuge)
     {
-        ValidarCpfJaCadastrado(conjuge.Cpf);
         Conjuge = conjuge;
     }
     
     public void AdicionarDependentes(List<Pessoa> dependentes)
     {
-        dependentes.ForEach(dependente => AdicionarDependente(dependente));
+        Dependentes.AddRange(dependentes);
     }
 
     public void AdicionarDependente(Pessoa dependente)
     {
-        ValidarCpfJaCadastrado(dependente.Cpf);
         Dependentes.Add(dependente);
-    }
-
-    private void ValidarCpfJaCadastrado(string cpf)
-    {
-        if(!ValidarCpfDuplicidadeResponsavel(cpf) || 
-           !ValidarCpfDuplicidadeConjuge(cpf) || 
-           !ValidarCpfDuplicidadeDependentes(cpf))
-            throw new ArgumentException(Mensagens.OCpfInformadoJaEstaCadastrado);
     }
 
     private bool ValidarCpfDuplicidadeResponsavel(string cpf)

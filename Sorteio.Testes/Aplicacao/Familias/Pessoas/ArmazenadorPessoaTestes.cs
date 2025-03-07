@@ -45,7 +45,6 @@ public class ArmazenadorPessoaTestes
         await acao.Should()
             .ThrowAsync<ArgumentException>()
             .WithMessage(mensagemEsperada);
-        
     }
 
     [Fact]

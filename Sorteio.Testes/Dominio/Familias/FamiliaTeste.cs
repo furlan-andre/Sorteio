@@ -52,7 +52,6 @@ public class FamiliaTeste
         Assert.Equal(responsavel.DataNascimento, familia.Responsavel.DataNascimento);
     }
     
-        
     [Fact]
     public void DeveCriarFamiliaComUmDependente()
     {
@@ -84,31 +83,6 @@ public class FamiliaTeste
         Assert.Contains(familia.Dependentes, pessoa => 
             pessoa.Cpf == dependente2.Cpf &&
             pessoa.ObterIdade() == dependente2.ObterIdade());
-    }
-    
-    [Fact]
-    public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaResponsavel()
-    {
-        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
-        var dependente = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0), true);
-        
-        var familia = new Familia(responsavel);
-        
-        var excecao = Assert.Throws<ArgumentException>(() => familia.AdicionarDependente(dependente));
-        Assert.Equal(Mensagens.OCpfInformadoJaEstaCadastrado, excecao.Message);
-    }
-    
-    [Fact]
-    public void NaoDeveAdicionarDependenteComCpfJaCadastradoParaOutroDependente()
-    {
-        var responsavel = MontarPessoa(AuxiliadorCpf.ObterCpfValido(0));
-        var dependente1 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), true);
-        var dependente2 = MontarPessoa(AuxiliadorCpf.ObterCpfValido(1), true);
-        
-        var familia = new Familia(responsavel);
-        
-        var excecao = Assert.Throws<ArgumentException>(() => familia.AdicionarDependentes([dependente1, dependente2]));
-        Assert.Equal(Mensagens.OCpfInformadoJaEstaCadastrado, excecao.Message);
     }
 
     private Pessoa MontarPessoa(string cpf, bool comMenoridade = false, float renda = 0)
