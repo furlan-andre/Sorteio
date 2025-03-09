@@ -41,7 +41,7 @@ public class FamiliaBuilder
         return this;
     }
     
-    public Familia Montar()
+    public Familia Criar()
     {
         _responsavel.AlterarRenda(_renda);
         var familia = new Familia(_responsavel);

@@ -7,7 +7,6 @@ public class PessoaBuilder
 {
     private string _nome;
     private string _cpf;
-    private int _id;
     private float _renda = 0;
     private DateTime _dataNascimento;
     private Faker _faker;

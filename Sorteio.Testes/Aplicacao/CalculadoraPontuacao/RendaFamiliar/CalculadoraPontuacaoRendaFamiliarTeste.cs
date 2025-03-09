@@ -26,7 +26,7 @@ public class CalculadoraPontuacaoRendaFamiliarTeste
     [InlineData(0, 2001)]
     public void CalculaPontuacaoDependentes(int resultadoEsperado, float rendaFamiliar)
     {
-        var familia = new FamiliaBuilder().Novo().ComResponsavel(_cpfValido).ComRenda(rendaFamiliar).Montar();
+        var familia = new FamiliaBuilder().Novo().ComResponsavel(_cpfValido).ComRenda(rendaFamiliar).Criar();
         var pontuacao = _calculadoraCriterioRendaFamiliar.Calcular(familia);
         Assert.Equal(resultadoEsperado, pontuacao);
     }

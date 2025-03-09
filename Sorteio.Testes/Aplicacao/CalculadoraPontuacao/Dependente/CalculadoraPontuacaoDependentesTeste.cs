@@ -41,7 +41,7 @@ public class CalculadoraPontuacaoDependentesTeste
             familia.ComDependenteMenoridade(_cpfDependenteValido[--quantidadeDepenedentes]);
         }
         
-        return familia.Montar();
+        return familia.Criar();
     }
 }
 
