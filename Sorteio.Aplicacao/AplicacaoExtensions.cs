@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Sorteio.Aplicacao.CalculadoraPontuacaoFamiliares;
 using Sorteio.Aplicacao.Classificacoes;
 using Sorteio.Aplicacao.Familias.Armazenadores;
 using Sorteio.Aplicacao.Familias.Consultas;
@@ -18,6 +19,7 @@ public static class AplicacaoExtensions
         services.AddScoped<IConsultaFamilia, ConsultaFamilia>();
         services.AddScoped<IArmazenadorFamilia, ArmazenadorFamilia>();
         services.AddScoped<IArmazenadorDependente, ArmazenadorDependente>();
+        services.AddScoped<ICalculadoraPontuacaoFamiliar, CalculadoraPontuacaoFamiliar>();
         services.AddScoped<IClassificacaoFamilia, ClassificacaoFamilia>();
         
         return services;
