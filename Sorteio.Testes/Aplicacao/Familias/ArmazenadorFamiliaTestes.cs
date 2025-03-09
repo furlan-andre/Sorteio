@@ -79,7 +79,6 @@ public class ArmazenadorFamiliaTests
         _unitOfWorkMock.Verify(u => u.RetrocederTransacaoAsync(), Times.Never);
         _familiaRepositoryMock.Verify(repo => repo.AdicionarAsync(It.IsAny<Familia>()), Times.Once);
     }
-   
 
     [Fact]
     public async Task DeveRetrocederTransacaoQuandoFalharArmazenadorDePessoa()

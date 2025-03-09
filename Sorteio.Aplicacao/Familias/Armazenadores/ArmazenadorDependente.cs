@@ -26,18 +26,18 @@ public class ArmazenadorDependente : IArmazenadorDependente
         if (familia == null)
             throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.NaoFoiEncontrada, "Familia"));
 
-        _unitOfWork.IniciarTransacaoAsync();
+        await _unitOfWork.IniciarTransacaoAsync();
         try
         {
             var pessoa = await _armazenadorPessoa.ArmazenarAsync(armazenaPessoaDto);
             familia.AdicionarDependente(pessoa);
             await _familiaRepository.AtualizarAsync(familia);
-            _unitOfWork.ConfirmarTransacaoAsync();
+            await _unitOfWork.ConfirmarTransacaoAsync();
             return PessoaMapper.ParaDto(pessoa);
         }
         catch(Exception ex)
         {
-            _unitOfWork.RetrocederTransacaoAsync();
+            await _unitOfWork.RetrocederTransacaoAsync();
             throw ex;
         }
     }

@@ -18,17 +18,27 @@ public class ConsultaPessoa : IConsultaPessoa
         var pessoa = await _pessoaRepository.ObterPorIdAsync(id);
         if (pessoa == null) throw new ArgumentException(Mensagens.FormatarMensagem(Mensagens.NaoFoiEncontrada,"pessoa")); 
         
-        return new PessoaDto(pessoa.Id, pessoa.Nome, pessoa.Cpf,pessoa.DataNascimento);
+        return new PessoaDto(){
+            Id = pessoa.Id,
+            Nome = pessoa.Nome,
+            Cpf = pessoa.Cpf,
+            DataNascimento = pessoa.DataNascimento,
+            Renda = pessoa.Renda,
+            FamiliaId = pessoa.FamiliaId
+        };
     }
 
     public async Task<IEnumerable<PessoaDto>> ObterTodosAsync()
     {
         var pessoas = await _pessoaRepository.ObterTodosAsync();
-        return pessoas.Select(pessoa => new PessoaDto(
-            pessoa.Id,
-            pessoa.Nome, 
-            pessoa.Cpf, 
-            pessoa.DataNascimento
-        )).ToList();
+        return pessoas.Select(pessoa => new PessoaDto()
+        {
+            Id = pessoa.Id,
+            Nome = pessoa.Nome,
+            Cpf = pessoa.Cpf,
+            DataNascimento = pessoa.DataNascimento,
+            Renda = pessoa.Renda,
+            FamiliaId = pessoa.FamiliaId
+        }).ToList();
     }
 }

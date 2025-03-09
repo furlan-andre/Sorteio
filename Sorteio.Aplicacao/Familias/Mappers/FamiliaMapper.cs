@@ -12,7 +12,7 @@ public static class FamiliaMapper
         Id = familia.Id,
         RendaFamiliar = familia.ObterRendaFamiliar(),
         Responsavel = PessoaMapper.ParaDto(familia.Responsavel),
-        Dependentes = familia.Dependentes.Select(x => PessoaMapper.ParaDto(x)).ToList(),
+        Dependentes = familia.Dependentes.Select(dependente => PessoaMapper.ParaDto(dependente)).ToList(),
         Conjuge = familia.Conjuge != null ? PessoaMapper.ParaDto(familia.Conjuge): null
     };
 }
